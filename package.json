@@ -1,0 +1,22 @@
+{
+  "name": "m02uf4-bases-de-datos",
+  "version": "1.0.0",
+  "description": "Base de datos",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/orodrigzz/M02UF4-Bases-de-datos.git"
+  },
+  "author": "Oscar",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/orodrigzz/M02UF4-Bases-de-datos/issues"
+  },
+  "homepage": "https://github.com/orodrigzz/M02UF4-Bases-de-datos#readme",
+  "dependencies": {
+    "mongodb": "^4.3.1"
+  }
+}
