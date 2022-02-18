@@ -6,6 +6,8 @@ let mongo_client = require("mongodb").MongoClient;
 
 let url = "mongodb://localhost/";
 
+let db;
+
 console.log("Inisiando escrí");
 
 mongo_client.connect(url, function(error, conn) {
@@ -14,24 +16,38 @@ mongo_client.connect(url, function(error, conn) {
 	if (error){
 		console.log ("ERROR");
 		return; }
-	
-	let db = conn.db("tffhd");
 
-	let info = db.collection("characters").find();
-
-	console.log(info);
-
+	db = conn.db("tffhd");
 });
 
-/*
 
 http.createServer(function(req, res){
 	res.writeHead(200);
+	
+	if (req.url == "/"){
+	res.end();
 
-	let saludo = "<h1>ola k ase</h1>";
+	return;
+	}
 
-	res.end(saludo);
+	let col = "";
+
+     if (req.url == "/characters")
+	 	col = "characters";
+	else if (req.url == "/items")
+		col = "items";
+	else if (req.url == "/weapons")
+		col = "weapons";
+	else{ 
+		res.end();
+		return;
+	}
+	let col_data = db.collection(col).find();
+
+	col_data.toArray(function(err, data){
+		let string = JSON.stringify(data);
+
+	res.end(string);
+	});
 
 }).listen(1095);
-
-*/
