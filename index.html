@@ -16,7 +16,14 @@
 	</ul>
 
 </section>
-</main>
+
+
+<section id="items">
+	<ul id="items-list">
+	
+	</ul>
+
+</section>
 
 <script>
 
@@ -31,12 +38,22 @@ function characterslist(data){
 	document.getElementById("characters-list").innerHTML = text;
 }
 
+ function itemslist(data){
+     let text = " ";
+     for(let i=0; i < data.length; i++){
+
+     text += "<li>"+data[i].name+"</li>";
+     }
+     document.getElementById("items-list").innerHTML = text;
+	 }
+
+
 
 let characters_interval = setInterval(function(){
 	fetch("/characters")
 		.then(res => res.json()).
 		then(data => characterslist(data));
-}, 2000);
+}, 1000);
 
 </script>
 
