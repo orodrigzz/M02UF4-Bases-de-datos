@@ -11,30 +11,28 @@
 
 <main>
 <section id="characters">
+	<h2> Personajes </h2>
 	<ul id="characters-list">
 
 	</ul>
 
 </section>
 
-
 <section id="items">
+	<h2> Items </h2>
 	<ul id="items-list">
 	
 	</ul>
-
 </section>
+</main>
 
 <script>
 
 function characterslist(data){
 	let text = " ";
 	for(let i=0; i < data.length; i++){
-
-	text += "<li>"+data[i].name+"</li>";
-
+	text += "<li><a href=\"/characters/"+data[i]._id+"\">"+data[i].name+"</a></li>";
 	}
-
 	document.getElementById("characters-list").innerHTML = text;
 }
 
@@ -47,13 +45,13 @@ function characterslist(data){
      document.getElementById("items-list").innerHTML = text;
 	 }
 
-
-
-let characters_interval = setInterval(function(){
+function load_char_data(){
 	fetch("/characters")
 		.then(res => res.json()).
 		then(data => characterslist(data));
-}, 1000);
+		}, 2000);
+
+load_char_data();
 
 </script>
 
