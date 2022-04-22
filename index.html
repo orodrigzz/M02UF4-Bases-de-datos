@@ -1,60 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TFFHD</title>
+<title>Too Fast Family HD: The Web App</title>
 </head>
 <body>
-<h1> Too Fast Family HD & Knuckles</h1>  
+<h1>Too Fast Family HD: The Web App</h1>
 
 <main>
 <section id="characters">
-	<h2> Personajes </h2>
+	<h2>Personajes</h2>
 	<ul id="characters-list">
 
 	</ul>
-
 </section>
-
 <section id="items">
-	<h2> Items </h2>
+	<h2>Items</h2>
 	<ul id="items-list">
-	
+
 	</ul>
 </section>
 </main>
 
 <script>
+function load_data_items ()
+{
+	fetch("/items")
+		.then(response => response.json())
+		.then(data => write_items_list(data));
 
-function characterslist(data){
-	let text = " ";
-	for(let i=0; i < data.length; i++){
-	text += "<li><a href=\"/characters/"+data[i]._id+"\">"+data[i].name+"</a></li>";
-	}
-	document.getElementById("characters-list").innerHTML = text;
 }
 
- function itemslist(data){
-     let text = " ";
-     for(let i=0; i < data.length; i++){
+function write_items_list (data)
+{
+	let list = "";
+	for (let i = 0; i < data.length; i++){
+		list += "<li>"+data[i].item+"</li>";
+	}
 
-     text += "<li>"+data[i].name+"</li>";
-     }
-     document.getElementById("items-list").innerHTML = text;
-	 }
+	document.getElementById("items-list").innerHTML = list;
+}
 
-function load_char_data(){
+function load_data_characters ()
+{
 	fetch("/characters")
-		.then(res => res.json()).
-		then(data => characterslist(data));
-		}, 2000);
+		.then(response => response.json())
+		.then(data => write_characters_list(data));
 
-load_char_data();
+}
+
+function write_characters_list (data)
+{
+	let list = "";
+	for (let i = 0; i < data.length; i++){
+		list += '<li><a href="/characters/'+data[i]._id+'">'+data[i].name+'</a>;
+		list += <a href="/remove/'+data[i].id_character+'">X</a></li>';
+	}
+
+	document.getElementById("characters-list").innerHTML = list;
+
+}
+
+
+let characters_interval = setInterval(function(){
+	load_data_characters();
+}, 2000);
+
+
+load_data_characters();
+
+let items_interval = setInterval(function(){
+	load_data_items();
+}, 2000);
+
+
+load_data_items();
+
+//clearInterval(items_interval);
 
 </script>
 
 </body>
 </html>
-

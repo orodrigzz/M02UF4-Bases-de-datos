@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/orodrigzz/M02UF4-Bases-de-datos#readme",
   "dependencies": {
-    "mongodb": "^4.3.1"
+    "mongodb": "^4.5.0"
   }
 }
