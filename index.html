@@ -34,7 +34,8 @@ function write_items_list (data)
 {
 	let list = "";
 	for (let i = 0; i < data.length; i++){
-		list += "<li>"+data[i].item+"</li>";
+			list += '<li><a href="/characters/'+data[i]._id+'">'+data[i].item+'<a></li>';
+			list += '<li> <a href="/remove/'+data[i].id_item+'">X</a></li>';
 	}
 
 	document.getElementById("items-list").innerHTML = list;
@@ -52,8 +53,8 @@ function write_characters_list (data)
 {
 	let list = "";
 	for (let i = 0; i < data.length; i++){
-		list += '<li><a href="/characters/'+data[i]._id+'">'+data[i].name+'</a>;
-		list += <a href="/remove/'+data[i].id_character+'">X</a></li>';
+			list += '<li><a href="/characters/'+data[i]._id+'">'+data[i].name+'</a></li>';
+			list +='<li> <a href="/remove/'+data[i].id_character+'">X</a></li>';
 	}
 
 	document.getElementById("characters-list").innerHTML = list;
